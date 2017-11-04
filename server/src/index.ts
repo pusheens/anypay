@@ -4,6 +4,8 @@ import * as firebase from 'firebase-admin'
 
 import router from './router'
 
+import './routes/signup'
+
 const app = new Koa()
 
 firebase.initializeApp({
