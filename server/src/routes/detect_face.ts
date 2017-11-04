@@ -60,7 +60,7 @@ router
     })
 
 
-    const { personId } = candidateArray[0].candidates.find((candidate: any) => {
+    const candidate = candidateArray[0].candidates.find((candidate: any) => {
       return candidate.confidence > 0.70
     })
 
@@ -68,12 +68,18 @@ router
     .ref('users')
     .once('value')
     .then(ref => ref.val())
-    for(let user in users){
-      if(users[user].personId == personId){
-        ctx.body = {user}
-        ctx.status = 200
-        return
+
+    if (candidate) {
+      for (let user in users) {
+        if (users[user].personId == candidate.personId) {
+          ctx.body = { user }
+          ctx.status = 200
+          return
+        }
       }
     }
+
+    ctx.status = 200
+    ctx.body = { user: null }
   }
 )

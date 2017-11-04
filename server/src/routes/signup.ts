@@ -5,14 +5,27 @@ import axios from 'axios'
 import router, { Context } from '../router'
 
 router.post('/signup',
-  body(),
+  body({
+    multipart: true
+  }),
   // create account
   async (ctx: Context, next) => {
-    const { email } = ctx.request.body
+    const { email } = ctx.request.body.fields
+    const { photo } = ctx.request.body.files
+
+    const [pic] = await firebase
+      .storage()
+      .bucket('anypay-e40b4.appspot.com')
+      .upload(photo.path)
+
+    await pic.makePublic()
+
+    const [metadata]: Array<any> = await pic.getMetadata()
+
     try {
       ctx.state.user = await firebase.auth().createUser({
         email,
-        photoURL: "http://cdn.cnn.com/cnnnext/dam/assets/161107120239-01-trump-parry-super-169.jpg"
+        photoURL: metadata.mediaLink
       })
       const token = await firebase.auth().createCustomToken(ctx.state.user.uid)
       ctx.status = 200
