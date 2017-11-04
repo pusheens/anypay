@@ -59,9 +59,8 @@ router
       }
     })
 
-
     const candidate = candidateArray[0].candidates.find((candidate: any) => {
-      return candidate.confidence > 0.70
+      return candidate.confidence > 0.5
     })
 
     const users = await firebase.database()
