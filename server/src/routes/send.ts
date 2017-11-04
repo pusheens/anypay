@@ -1,4 +1,3 @@
-import * as body from 'koa-body'
 import * as firebase from 'firebase-admin'
 
 import router, { Context } from '../router'

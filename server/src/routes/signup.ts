@@ -16,11 +16,12 @@ router.post('/signup',
       const token = await firebase.auth().createCustomToken(ctx.state.user.uid)
       ctx.status = 200
       ctx.body = { token }
-      return next()
     } catch (error) {
       ctx.status = 400
       ctx.body = { error: error.message }
+      return
     }
+    await next()
   },
   async (ctx: Context) => {
     await firebase
