@@ -2,7 +2,22 @@
   "name": "anypay-server",
   "version": "0.0.0",
   "description": "",
-  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon --exec ts-node -- src/index.ts"
+  },
   "author": "",
-  "private": true
+  "private": true,
+  "devDependencies": {
+    "@types/koa": "^2.0.39",
+    "@types/koa-router": "^7.0.23",
+    "nodemon": "^1.12.1",
+    "ts-node": "^3.3.0",
+    "typescript": "^2.6.1"
+  },
+  "dependencies": {
+    "@koa/cors": "^2.2.1",
+    "koa": "^2.3.0",
+    "koa-body": "^2.5.0",
+    "koa-router": "^7.2.1"
+  }
 }
