@@ -1,0 +1,8 @@
+{
+  "name": "anypay-server",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "private": true
+}
