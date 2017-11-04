@@ -9,6 +9,7 @@
   "private": true,
   "devDependencies": {
     "@types/koa": "^2.0.39",
+    "@types/koa-compose": "^3.2.2",
     "@types/koa-router": "^7.0.23",
     "nodemon": "^1.12.1",
     "ts-node": "^3.3.0",
@@ -17,8 +18,11 @@
   "dependencies": {
     "@koa/cors": "^2.2.1",
     "axios": "^0.17.0",
+    "email-validator": "^1.1.1",
+    "firebase-admin": "^5.4.3",
     "koa": "^2.3.0",
     "koa-body": "^2.5.0",
+    "koa-compose": "^4.0.0",
     "koa-router": "^7.2.1"
   }
 }
