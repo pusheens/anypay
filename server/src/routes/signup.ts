@@ -1,38 +1,28 @@
-import { Context, Middleware } from 'koa'
 import * as body from 'koa-body'
 import * as firebase from 'firebase-admin'
 
-import router from '../router'
+import router, { Context } from '../router'
 
-interface SignUpContext extends Context {
-  state: {
-    user: firebase.auth.UserRecord
-  }
-}
-
-router
-  .post('/signup')
-  .use(body())
+router.post('/signup',
+  body(),
   // create account
-  .use(async (ctx: SignUpContext, next) => {
+  async (ctx: Context, next) => {
     const { email } = ctx.request.body
     try {
+      console.log('test')
       ctx.state.user = await firebase.auth().createUser({
         email
       })
-      const token = await firebase.auth().createCustomToken(
-        ctx.state.user.uid
-      )
+      const token = await firebase.auth().createCustomToken(ctx.state.user.uid)
       ctx.status = 200
-      ctx.body = { token: '' }
+      ctx.body = { token }
       return next()
     } catch (error) {
       ctx.status = 400
       ctx.body = { error: error.message }
     }
-  })
-  // populate default user data
-  .use(async (ctx: SignUpContext) => {
+  },
+  async (ctx: Context) => {
     await firebase
       .database()
       .ref('users')
@@ -40,4 +30,5 @@ router
       .set({
         balance: 0
       })
-  })
+  },
+)
