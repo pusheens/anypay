@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@koa/cors": "^2.2.1",
+    "email-validator": "^1.1.1",
+    "firebase-admin": "^5.4.3",
     "koa": "^2.3.0",
     "koa-body": "^2.5.0",
     "koa-router": "^7.2.1"

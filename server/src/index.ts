@@ -1,13 +1,14 @@
 import * as Koa from 'koa'
-import * as Router from 'koa-router'
 import * as body from 'koa-body'
+import * as firebase from 'firebase-admin'
+
+import router from './router'
 
 const app = new Koa()
-const router = new Router()
 
-router.post('/signup', body(), ctx => {
-  const { email } = ctx.request.body
-
+firebase.initializeApp({
+  credential: firebase.credential.cert(require('../admin-key.json')),
+  databaseURL: 'https://anypay-e40b4.firebaseio.com/'
 })
 
 app
