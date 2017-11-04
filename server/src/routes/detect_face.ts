@@ -64,6 +64,8 @@ router
       return candidate.confidence > 0.70
     })
 
+    pic.delete()
+
     const users = await firebase.database()
     .ref('users')
     .once('value')
@@ -75,5 +77,6 @@ router
         return
       }
     }
+    
   }
 )
