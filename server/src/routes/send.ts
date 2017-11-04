@@ -4,16 +4,15 @@ import router, { Context } from '../router'
 import auth from '../middleware/auth'
 
 router
-  .use(auth)
-  .post('/send', async (ctx: Context) => {
-    const { amount, receiver: receiverEmail } = ctx.request.body
+  .post('/send', auth, async (ctx: Context) => {
+    const { amount, receiverId } = ctx.request.body
     
     // charge user credit card
     //    NOT IMPLEMENTED
 
     // get receiving user
     try {
-      var receiver = await firebase.auth().getUserByEmail(receiverEmail)
+      var receiver = await firebase.auth().getUser(receiverId)
     } catch (error) {
       ctx.status = 400
       ctx.body = { error: 'User does not exsist' }
