@@ -14,33 +14,38 @@ export default class Home extends React.Component {
       email: null,
       photoUrl: null,
       bankFlag: null,
-      cardNumber: null
+      cardNumber: null,
+      balance: null
     }
   }
 
-  componentDidMount(){
-    firebase.auth().onAuthStateChanged(user => {
+  async componentDidMount(){
+    const  update = async (user) => {
+      const { data } = await axios.get('http://localhost:3000/user_info', {
+        params: {
+          email: user.email
+        }
+      })
+
       this.setState({
         name: user.displayName,
         email: user.email,
-        photoUrl: user.photoURL
+        photoUrl: user.photoURL,
+        cardNumber: data.creditCards[0]
       })
+    }
+
+    await firebase.auth().onAuthStateChanged(async user => {
+      await update(user)
     })
     if (firebase.auth().currentUser) {
-      this.setState({
-        name: firebase.auth().currentUser.displayName,
-        email: firebase.auth().currentUser.email,
-        photoUrl: firebase.auth().currentUser.photoURL
-      })
+      update(firebase.auth().currentUser)
     }
       //const user2 = await axios.get(`http://localhost:3000/user_info?email=${user.email}`)
     
   }
 
   render () {
-    const numAccounts = 2
-    const balance = '0.00'
-
     return (
       <div className='container'>
         <div className='flex-start'>
@@ -49,8 +54,8 @@ export default class Home extends React.Component {
           </div>
         </div>
         <div className='flex-middle is-centered'>
-          <span className='text-oversized'>${balance}</span>
-          { this.state.bankFlag === true ?
+          <span className='text-oversized'>${this.state.balance}.00</span>
+          { this.state.bankFlag === 'true' ?
             <Button to='' text='Claim Rewards' type='primary' />
           :
             <Button to='/bankAccount' text='Add Bank Account' type='primary' />

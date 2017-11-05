@@ -1,9 +1,31 @@
 import React from 'react'
 
+import axios from 'axios'
+import firebase from 'firebase'
+
 import Button from '../components/Button'
 import Input from '../components/Input'
 
 export default class AddBankAccount extends React.Component {
+  addBank = async event => {
+    event.preventDefault()
+
+    try {
+      const email = firebase.auth().currentUser.email
+
+      const { data } = await axios.get('http://localhost:3000/has_bank', {
+        params: {
+          email,
+          hasBank: true
+        }
+      })
+
+      this.props.history.push('/home')
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   render () {
     return (
       <div className='container'>
@@ -16,7 +38,7 @@ export default class AddBankAccount extends React.Component {
           <Input id='accountNumber' label='Account Number' type='text' />
         </div>
         <div className='flex-end is-centered'>
-          <Button to='/signup6' text='Add Bank Account' type='gradient' />
+          <Button to='/home' text='Add Bank Account' type='gradient' onClick={this.addBank} />
         </div>
       </div>
     )
