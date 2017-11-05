@@ -2,7 +2,10 @@
   "name": "anypay-server",
   "version": "0.0.0",
   "description": "",
+  "main": "src/index.ts",
   "scripts": {
+    "preinstall": "tsc -p .",
+    "start": "node dist",
     "dev": "nodemon --exec ts-node -- src/index.ts"
   },
   "author": "",
