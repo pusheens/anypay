@@ -12,8 +12,6 @@ router.post('/signup', body(), ctx => {
 })
 
 router.get('/group', ctx => {
-    const subscriptionKey = "25020457c33748acbecc1e9eb36ad0dc";
-  
     const uriBase = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/grouptest";
 
     axios({
@@ -21,7 +19,7 @@ router.get('/group', ctx => {
       url:uriBase,
       headers: {
         "Content-Type":"application/json",
-        "Ocp-Apim-Subscription-Key": subscriptionKey
+        "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
       },
       data: {
         name: 'group1',

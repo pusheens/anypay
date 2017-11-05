@@ -21,14 +21,12 @@ router
 
     const [metadata]: Array<any> = await pic.getMetadata()
 
-    const subscriptionKey = "25020457c33748acbecc1e9eb36ad0dc";
-
     const { data } = await axios({
       method: 'POST',
       url: "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true",
       headers: {
         "Content-Type": "application/json",
-        "Ocp-Apim-Subscription-Key": subscriptionKey
+        "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
       },
       data: {
         url: metadata.mediaLink
@@ -40,7 +38,7 @@ router
       url: "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/grouptest/train",
       headers: {
         "Content-Type": "application/json",
-        "Ocp-Apim-Subscription-Key": subscriptionKey
+        "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
       }
     })
 
@@ -51,7 +49,7 @@ router
       url: "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/identify",
       headers: {
         "Content-Type": "application/json",
-        "Ocp-Apim-Subscription-Key": subscriptionKey
+        "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
       },
       data: {
         faceIds: [data[0].faceId],

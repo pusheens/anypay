@@ -38,14 +38,12 @@ router.post('/signup',
     await next()
   },
   async (ctx: Context) => {
-    const subscriptionKey = "25020457c33748acbecc1e9eb36ad0dc";
-  
     const { data: { personId } } = await axios({
       method:'POST',
       url:"https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/grouptest/persons",
       headers: {
         "Content-Type":"application/json",
-        "Ocp-Apim-Subscription-Key": subscriptionKey
+        "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
       },
       data: {
         name: ctx.state.user.email
@@ -58,21 +56,20 @@ router.post('/signup',
         url:`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/grouptest/persons/${personId}/persistedFaces`,
         headers: {
           "Content-Type":"application/json",
-          "Ocp-Apim-Subscription-Key": subscriptionKey
+          "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
         },
         data: {
           url: ctx.state.user.photoURL
         }
       }),
-
-    firebase
-      .database()
-      .ref('users')
-      .child(ctx.state.user.uid)
-      .set({
-        personId,
-        balance: 0
-      })
+      firebase
+        .database()
+        .ref('users')
+        .child(ctx.state.user.uid)
+        .set({
+          personId,
+          balance: 0
+        })
     ])
   },
 )
