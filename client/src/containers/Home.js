@@ -28,7 +28,7 @@ export default class Home extends React.Component {
         photoUrl: firebase.auth().currentUser.photoURL
       })      
     }
-      //const user2 = await axios.get(`http://localhost:3000/user_info?email=${user.email}`)
+      //const user2 = await axios.get(`http://anypay-fyirqubpoo.now.sh/user_info?email=${user.email}`)
     
   }
   
