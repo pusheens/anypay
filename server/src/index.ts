@@ -12,7 +12,7 @@ import './routes/signup'
 const app = new Koa()
 
 firebase.initializeApp({
-  credential: firebase.credential.cert(require('../admin-key.json')),
+  credential: firebase.credential.cert(require('../key-firebase.json')),
   databaseURL: 'https://anypay-e40b4.firebaseio.com/'
 })
 

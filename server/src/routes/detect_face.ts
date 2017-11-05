@@ -61,10 +61,12 @@ router
       return candidate.confidence > 0.5
     })
 
+    pic.delete()
+
     const users = await firebase.database()
-    .ref('users')
-    .once('value')
-    .then(ref => ref.val())
+      .ref('users')
+      .once('value')
+      .then(ref => ref.val())
 
     if (candidate) {
       for (let user in users) {
