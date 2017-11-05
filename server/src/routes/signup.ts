@@ -70,7 +70,8 @@ router.post('/signup',
         .set({
           personId,
           balance: 0,
-          confirmationCode
+          confirmationCode,
+          creditCards: []
         })
     ])
   },
