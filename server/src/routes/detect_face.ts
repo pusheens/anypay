@@ -70,7 +70,7 @@ router
     if (candidate) {
       for (let user in users) {
         if (users[user].personId == candidate.personId) {
-          ctx.body = { user }
+          ctx.body = { user, confidence: candidate.confidence }
           ctx.status = 200
           return
         }

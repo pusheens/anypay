@@ -12,10 +12,10 @@ router.post('/signup',
   }),
   // create account
   async (ctx: Context, next) => {
-    const { email } = ctx.request.body.data
-    // const { photo } = ctx.request.body.files
+    const email = ctx.request.body.email || ctx.request.body.fields.email
+    const { photo } = ctx.request.body.files
 
-    const {pic, mediaLink} = await uploadPhoto(null)
+    const {pic, mediaLink} = await uploadPhoto(photo)
 
     try {
       ctx.state.user = await firebase.auth().createUser({
