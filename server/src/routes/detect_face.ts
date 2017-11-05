@@ -3,6 +3,7 @@ import * as body from 'koa-body'
 import axios from 'axios'
 import router, { Context } from '../router'
 import uploadPhoto from '../middleware/uploadPhoto'
+import groupIdHelepr from '../middleware/groupIdHelper'
 
 router
   .post('/detect_face',
@@ -28,10 +29,13 @@ router
       }
     })
 
+    // Get groupId
+    const groupId = groupIdHelepr.getGroupId()
+
     // Train AI
     await axios({
       method: 'POST',
-      url: "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/pusheen/train",
+      url: `https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/${groupId}/train`,
       headers: {
         "Content-Type": "application/json",
         "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
@@ -48,7 +52,7 @@ router
       },
       data: {
         faceIds: [data[0].faceId],
-        personGroupId: 'pusheen'
+        personGroupId: `${groupId}`
       }
     })
 

@@ -5,6 +5,7 @@ class Camera extends React.Component {
   componentDidMount () {
     this.video = document.querySelector('#camera-stream')
     this.stream = null
+    this.capture = document.querySelector('.capture')
 
     navigator.getMedia = (
       navigator.getUserMedia ||
@@ -71,6 +72,7 @@ class Camera extends React.Component {
 
   showVideo () {
     this.video.classList.add('visible')
+    this.capture.classList.add('visible')
   }
 
   render () {
