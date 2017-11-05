@@ -12,10 +12,10 @@ router.post('/signup',
   }),
   // create account
   async (ctx: Context, next) => {
-    const { email } = ctx.request.body.fields
-    const { photo } = ctx.request.body.files
+    const { email } = ctx.request.body.data
+    // const { photo } = ctx.request.body.files
 
-    const {pic, mediaLink} = await uploadPhoto(photo)
+    const {pic, mediaLink} = await uploadPhoto(null)
 
     try {
       ctx.state.user = await firebase.auth().createUser({
@@ -36,7 +36,7 @@ router.post('/signup',
   async (ctx: Context) => {
     const { data: { personId } } = await axios({
       method:'POST',
-      url:"https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/grouptest/persons",
+      url:"https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/pusheen/persons",
       headers: {
         "Content-Type":"application/json",
         "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
@@ -53,7 +53,7 @@ router.post('/signup',
       // Upload photo as a persistent face to the person
       axios({
         method:'POST',
-        url:`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/grouptest/persons/${personId}/persistedFaces`,
+        url:`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/pusheen/persons/${personId}/persistedFaces`,
         headers: {
           "Content-Type":"application/json",
           "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI

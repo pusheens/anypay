@@ -25,6 +25,7 @@
     "koa": "^2.3.0",
     "koa-body": "^2.5.0",
     "koa-compose": "^4.0.0",
+    "koa-cors": "0.0.16",
     "koa-router": "^7.2.1",
     "sendgrid": "^5.2.3",
     "uuid": "^3.1.0"

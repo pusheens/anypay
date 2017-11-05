@@ -9,6 +9,13 @@ import Logo from '../components/Logo'
 import firebase from 'firebase'
 
 class Login extends React.Component {
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        this.props.history.push('/sendmoney1')
+      }
+    })
+  }
   login = async event => {
     event.preventDefault()
     

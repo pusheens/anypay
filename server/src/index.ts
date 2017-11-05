@@ -3,6 +3,7 @@ import * as body from 'koa-body'
 import * as firebase from 'firebase-admin'
 
 import router from './router'
+import * as cors from '@koa/cors'
 
 import './routes/claim'
 import './routes/confirm'
@@ -19,6 +20,7 @@ firebase.initializeApp({
 })
 
 app
+  .use(cors())
   .use(router.routes())
   .use(router.allowedMethods())
 

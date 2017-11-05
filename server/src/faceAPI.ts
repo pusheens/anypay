@@ -12,7 +12,7 @@ router.post('/signup', body(), ctx => {
 })
 
 router.get('/group', ctx => {
-    const uriBase = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/grouptest";
+    const uriBase = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/pusheen";
 
     axios({
       method:'PUT',
