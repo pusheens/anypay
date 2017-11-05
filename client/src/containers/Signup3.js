@@ -11,6 +11,7 @@ export default class Signup1 extends React.Component {
         <div className='flex-start'>&nbsp;</div>
         <div className='flex-middle is-centered'>
           <h1 className='text-centered'>Account created!</h1>
+          <img src='accountsuccess.png' alt='checkmark' />
         </div>
         <div className='flex-end is-centered'>
           <Button to='/signup4' text='Add a Credit Card' type='gradient' />

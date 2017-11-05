@@ -4,6 +4,8 @@ import firebase from 'firebase'
 
 import { BrowserRouter, Route, withRouter } from 'react-router-dom'
 
+import AddBankAccount from './containers/AddBankAccount'
+import AddCreditCard from './containers/AddCreditCard'
 import Home from './containers/Home'
 import Login from './containers/Login'
 import SendMoney1 from './containers/SendMoney1'
@@ -20,7 +22,7 @@ import './firebase'
 
 class PrimaryLayout extends React.Component {
   componentDidMount() {
-    
+
   }
   render() {
     return (
@@ -35,6 +37,8 @@ class PrimaryLayout extends React.Component {
         <Route path='/signup6' name='signup6' component={Signup6} />
 
         <Route path='/home' name='home' component={Home} />
+        <Route path='/bankAccount' name='bankAccount' component={AddBankAccount} />
+        <Route path='/creditCard' name='creditCard' component={AddCreditCard} />
 
         <Route path='/sendmoney1' name='sendmoney1' component={SendMoney1} />
         <Route path='/sendmoney2/:receiver/:photoUrl' name='sendmoney2' component={SendMoney2} />

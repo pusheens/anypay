@@ -1,9 +1,12 @@
 {
   "scripts": {
-    "start": "cd server && npm start",
-    "postinstall": "bash ./postinstall"
+    "start": "cd server && ts-node src",
+    "deploy": "now --docker"
   },
   "engines": {
     "node": "6.11.1"
+  },
+  "now": {
+    "alias": "anypay-pusheens"
   }
 }
