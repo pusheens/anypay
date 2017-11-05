@@ -3,6 +3,7 @@ import * as firebase from 'firebase-admin'
 import axios from 'axios'
 import email from '../lib/email'
 import uploadPhoto from '../middleware/uploadPhoto'
+import groupIdHelper from '../middleware/groupIdHelper'
 
 import router, { Context } from '../router'
 
@@ -32,11 +33,15 @@ router.post('/signup',
     }
     await next()
   },
+
   // Create person with email as the name
   async (ctx: Context) => {
+    //Get groupId
+    const groupdId = groupIdHelper.getGroupId()
+    
     const { data: { personId } } = await axios({
       method:'POST',
-      url:"https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/pusheen/persons",
+      url:`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/${groupdId}/persons`,
       headers: {
         "Content-Type":"application/json",
         "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
@@ -53,7 +58,7 @@ router.post('/signup',
       // Upload photo as a persistent face to the person
       axios({
         method:'POST',
-        url:`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/pusheen/persons/${personId}/persistedFaces`,
+        url:`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/${groupdId}/persons/${personId}/persistedFaces`,
         headers: {
           "Content-Type":"application/json",
           "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
