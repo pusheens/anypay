@@ -91,6 +91,13 @@ h3 {
   border-bottom: 2px solid #21D4FD;
   text-decoration: none; }
 
+.flex-end .button {
+  position: fixed;
+  top: 550px;
+  left: 5%;
+  right: 5%;
+  width: auto; }
+
 .splash {
   height: 275px;
   width: 115.5%;
