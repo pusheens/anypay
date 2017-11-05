@@ -1,0 +1,248 @@
+//______________________________________________________________________________
+//                                VARIABLES
+//______________________________________________________________________________
+
+$primaryColor: #21D4FD
+$secondaryColor: #B721FF
+$lightColor: #C6CBD4
+$mediumColor: #6C727C
+$darkColor: #333
+
+$weightHeavy: 800
+
+$container: 90%
+
+//______________________________________________________________________________
+//                                 MIXINS
+//______________________________________________________________________________
+
+@mixin gradient()
+  background: linear-gradient(30deg, $primaryColor 0%, $secondaryColor 100%)
+
+@mixin splashGradient()
+  background: linear-gradient(30deg, $primaryColor 20%, $secondaryColor 80%)
+
+//______________________________________________________________________________
+//                                GENERAL
+//______________________________________________________________________________
+
+html, body
+  font-family: Avenir
+  margin: 0
+  padding: 0
+
+//______________________________________________________________________________
+//                              TYPOGRAPHY
+//______________________________________________________________________________
+
+h1
+  font-size: 32px
+  font-weight: $weightHeavy
+
+h2
+  font-size: 18px
+  font-weight: $weightHeavy
+
+h3
+  font-weight: normal
+
+.text-oversized
+  font-size: 72px
+  font-weight: $weightHeavy
+
+.text-centered
+  text-align: center
+
+//______________________________________________________________________________
+//                                 GRID
+//______________________________________________________________________________
+
+.container
+  width: 90%
+  height: 100vh
+  margin-left: auto
+  margin-right: auto
+  display: flex
+  flex-direction: column
+
+.container.gradient
+  @include gradient()
+  color: #fff
+  width: 90%
+  padding: 0 5%
+
+  h1, h2
+    font-weight: normal
+
+.flex-start
+  padding: 10% 0 5% 0
+
+.flex-middle
+  padding: 10% 0
+
+.flex-end
+  padding: 5% 0 20% 0
+
+.flex-middle
+  flex: 1
+
+.flex-start.is-centered,
+.flex-middle.is-centered,
+.flex-end.is-centered
+  flex-direction: column
+  display: flex
+  align-items: center
+
+//______________________________________________________________________________
+//                                BUTTONS
+//______________________________________________________________________________
+
+.button
+  $height: 20px
+  $padding: 40px - $height
+  width: 90%
+  height: $height
+  border-radius: $height * 2
+  padding: $padding
+  font-size: $height
+  line-height: $height
+  display: block
+  font-weight: $weightHeavy
+  text-align: center
+  text-decoration: none
+
+  &.gradient
+    @include gradient()
+    color: #fff
+
+  &.light
+    background: #fff
+    color: $darkColor
+
+  &.dark
+    background: $darkColor
+    color: #fff
+
+.link
+  color: $primaryColor
+  font-size: 18px
+  margin-top: 10px
+  border-bottom: 2px solid $primaryColor
+  text-decoration: none
+
+//______________________________________________________________________________
+//                                SPLASH
+//______________________________________________________________________________
+
+.splash
+  height: 275px
+  width: $container - (($container - 100%) - 15.5%)
+  margin: $container - 100%
+  margin-bottom: 0
+  color: #fff
+  position: relative
+  overflow: hidden
+  text-align: center
+
+.splash::after
+  @include splashGradient()
+  border-radius: 100%
+  position: absolute
+  top: -50px
+  left: -110px
+  right: -80px
+  bottom: 0
+  content: ''
+  z-index: -1
+
+//______________________________________________________________________________
+//                               PROFILE
+//______________________________________________________________________________
+
+.profile
+  padding: 5% 0
+
+  .title
+    margin-bottom: 0
+
+  .subtitle
+    margin-top: 0
+
+  img
+    display: block
+    margin-left: auto
+    margin-right: auto
+    width: 100px
+    height: 100px
+    border-radius: 50%
+    background-color: #fff
+    padding: 10px
+
+  &.on-white
+    img
+      background-color: #efefef
+
+  &.large
+    img
+      width: 125px
+      height: 125px
+
+
+//______________________________________________________________________________
+//                            FORM ELEMENTS
+//______________________________________________________________________________
+
+.has-float-label
+  display: block
+  position: relative
+
+.has-float-label label,
+.has-float-label > span
+  position: absolute
+  left: 0
+  top: 0
+  cursor: text
+  font-size: 75%
+  color: $primaryColor
+  opacity: 1
+  -webkit-transition: all .2s
+  transition: all .2s
+
+.has-float-label input,
+.has-float-label select
+  width: 100%
+  font-size: inherit
+  padding-top: 1em
+  border: 0
+  border-radius: 0
+  border-bottom: 2px solid $lightColor
+
+.has-float-label input::-webkit-input-placeholder,
+.has-float-label select::-webkit-input-placeholder
+  opacity: 1
+  -webkit-transition: all .2s
+  transition: all .2s
+
+.has-float-label input:placeholder-shown:not(:focus)::-webkit-input-placeholder,
+.has-float-label select:placeholder-shown:not(:focus)::-webkit-input-placeholder
+  opacity: 0
+
+.has-float-label input:placeholder-shown:not(:focus) + *,
+.has-float-label select.unselected:not(:focus) + *
+  font-size: 150%
+  opacity: .5
+  color: $mediumColor
+
+.has-float-label input:focus,
+.has-float-label select:focus
+  outline: none
+  border-color: $primaryColor
+
+.input-group
+  display: table
+  width: 100%
+  margin-bottom: 10%
+
+.input-group > *
+  display: table-cell
+  width: 50%

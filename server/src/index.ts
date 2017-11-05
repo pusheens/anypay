@@ -5,6 +5,7 @@ import * as firebase from 'firebase-admin'
 import router from './router'
 
 import './routes/claim'
+import './routes/confirm'
 import './routes/detect_face'
 import './routes/send'
 import './routes/signup'
