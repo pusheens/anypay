@@ -25,4 +25,6 @@ app
   .use(router.routes())
   .use(router.allowedMethods())
 
-app.listen(process.env.PORT || 3000)
+app.listen(Number(process.env.PORT) || 3000, '0.0.0.0', 0, () => {
+  // ignore
+})
