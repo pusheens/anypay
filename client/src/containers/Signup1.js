@@ -4,6 +4,7 @@ import { withRouter } from 'react-router'
 import Button from '../components/Button'
 import Input from '../components/Input'
 import Profile from '../components/Profile'
+import { openLoader } from '../components/Loader'
 
 import axios from 'axios'
 import firebase from 'firebase'
@@ -26,7 +27,7 @@ class Signup1 extends React.Component {
   }
   signup = async (event) => {
     event.preventDefault();
-
+    this.closeLoader = openLoader()
     const formData = new FormData()
     
     formData.append('email', this.refs.container.email.value)
@@ -41,8 +42,8 @@ class Signup1 extends React.Component {
 
     const user = await firebase.auth().signInWithCustomToken(token)
     await user.updatePassword(this.refs.container.password.value)
-
-    this.props.history.push('/signup2')
+    this.closeLoader()
+    this.props.history.push('/signup3')
   }
   render () {
     return (
@@ -65,7 +66,7 @@ class Signup1 extends React.Component {
           <Input id='password' label='Password' type='password' />
         </div>
         <div className='flex-end is-centered'>
-          <Button to='/signup2' text='Continue' type='gradient' onClick={this.signup} />
+          <Button to='/signup3' text='Continue' type='gradient' onClick={this.signup} />
         </div>
       </form>
     )

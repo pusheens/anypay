@@ -10,13 +10,10 @@ export default class Signup1 extends React.Component {
       <div className='container'>
         <div className='flex-start'>&nbsp;</div>
         <div className='flex-middle is-centered'>
-          <h1 className='text-centered'>Email confirmed!</h1>
-          <h2 className='text-centered'>&nbsp;</h2>
-          <Input id='password' label='Password' type='password' focus />
-          <Input id='passwordConfirm' label='Confirm Password' type='password' />
+          <h1 className='text-centered'>Account created!</h1>
         </div>
         <div className='flex-end is-centered'>
-          <Button to='/signup4' text='Continue to Account Setup' type='gradient' />
+          <Button to='/signup4' text='Add a Credit Card' type='gradient' />
           <Anchor to='/home' text='Skip for now' />
         </div>
       </div>
