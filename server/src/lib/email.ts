@@ -27,7 +27,7 @@ export default class {
             type: 'text/html',
             value: template.replace(
               /LINK/g,
-              `http://anypay-fyirqubpoo.now.sh/confirm?code=${code}`
+              `http://localhost:3000/confirm?code=${code}`
             )
           }
         ]

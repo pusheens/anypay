@@ -15,7 +15,7 @@ class SendMoney1 extends React.Component {
     const blob = await fetch(snap).then(res => res.blob())
     formData.append('photo', blob)
 
-    const { data: { photoUrl, user } } = await axios.post('http://anypay-fyirqubpoo.now.sh/detect_face', formData, {
+    const { data: { photoUrl, user } } = await axios.post('http://l/detect_face', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
