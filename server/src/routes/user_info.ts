@@ -23,12 +23,31 @@ router
       cardNumArr.push(creditCards[cardNum]);
     }
 
+    const currentBankValue = await firebase
+    .database()
+    .ref('users')
+    .child(user.uid)
+    .child("hasBank")
+    .once('value')
+    .then(ref => ref.val())
+
+    const balance = await firebase
+    .database()
+    .ref('users')
+    .child(user.uid)
+    .child('balance')
+    .once('value')
+    .then(ref => ref.val())
+
     ctx.body = {
       "uid": user.uid,
       "email": user.email,
       "emailVerified": user.emailVerified,
       "photoUrl": user.photoURL,
-      "creditCards": cardNumArr
+      "creditCards": cardNumArr,
+      "hasBank": currentBankValue,
+      "balance": balance,
+      "displayName": user.displayName 
     }
     ctx.status = 200
   })

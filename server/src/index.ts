@@ -23,7 +23,7 @@ firebase.initializeApp({
 })
 
 app
-  .use(cors())
+  .use(cors({ 'Access-Control-Allow-Origin': '*' }))
   .use(router.routes())
   .use(router.allowedMethods())
 

@@ -31,7 +31,6 @@ export default class Home extends React.Component {
         name: user.displayName,
         email: user.email,
         photoUrl: user.photoURL,
-        bankFlag: user.hasBank,
         cardNumber: data.creditCards[0]
       })
     }
@@ -45,9 +44,13 @@ export default class Home extends React.Component {
 
     setTimeout(() => {
       try {
-        firebase.database().ref('users').child(firebase.auth().currentUser.uid).child('balance')
+        firebase.database().ref('users').child(firebase.auth().currentUser.uid)
         .on('value', data => {
-          this.setState({ balance: data.val() })
+          this.setState({
+            balance: data.val().balance,
+            bankFlag: data.val().hasBank,
+
+          })
         })
       }
        catch (error) {
@@ -68,7 +71,7 @@ export default class Home extends React.Component {
         </div>
         <div className='flex-middle is-centered'>
           <span className='text-oversized'>${this.state.balance}.00</span>
-          { this.state.bankFlag === true ?
+          { this.state.bankFlag === 'true' ?
             <Button to='' text='Claim Rewards' type='primary' />
           :
             <Button to='/bankAccount' text='Add Bank Account' type='primary' />

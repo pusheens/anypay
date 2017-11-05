@@ -13,9 +13,11 @@ export default class AddBankAccount extends React.Component {
     try {
       const email = firebase.auth().currentUser.email
 
-      const { data } = await axios.post('http://localhost:3000/has_bank', {
-        email,
-        has_bank: true
+      const { data } = await axios.get('http://localhost:3000/has_bank', {
+        params: {
+          email,
+          hasBank: true
+        }
       })
 
       this.props.history.push('/home')
@@ -36,7 +38,7 @@ export default class AddBankAccount extends React.Component {
           <Input id='accountNumber' label='Account Number' type='text' />
         </div>
         <div className='flex-end is-centered'>
-          <Button to='' text='Add Bank Account' type='gradient' />
+          <Button to='/home' text='Add Bank Account' type='gradient' onClick={this.addBank} />
         </div>
       </div>
     )
