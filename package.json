@@ -2,5 +2,8 @@
   "scripts": {
     "start": "cd server && npm start",
     "postinstall": "bash ./postinstall"
+  },
+  "engines": {
+    "node": "6.11.1"
   }
 }
