@@ -86,7 +86,8 @@ router.post('/signup',
           personId,
           balance: 0,
           // confirmationCode,
-          creditCards: []
+          creditCards: [],
+          hasBank: false
         })
     ])
   },

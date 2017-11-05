@@ -13,6 +13,7 @@ import './routes/signup'
 import './routes/credit_card'
 import './routes/clear_data'
 import './routes/user_info'
+import './routes/has_bank'
 
 const app = new Koa()
 
