@@ -4,6 +4,7 @@ import { withRouter } from 'react-router'
 class Camera extends React.Component {
   componentDidMount () {
     this.video = document.querySelector('#camera-stream')
+    this.stream = null
 
     navigator.getMedia = (
       navigator.getUserMedia ||
@@ -20,6 +21,7 @@ class Camera extends React.Component {
           video: true
         },
         (stream) => {
+          this.stream = stream
           this.video.src = window.URL.createObjectURL(stream)
 
           this.video.play()
@@ -38,8 +40,16 @@ class Camera extends React.Component {
     var snap = this.takeSnapshot()
     this.video.pause()
 
-    if (snap !== '')
-      this.props.history.push(this.props.to)
+    if (snap !== '') {
+      if (this.props.to) 
+        this.props.history.push(this.props.to)
+      if (this.props.onSnap) 
+        this.props.onSnap(snap)
+    }
+    if (this.stream) {
+      // stop camera
+      this.stream.getTracks()[0].stop()
+    }
   }
 
   takeSnapshot () {
