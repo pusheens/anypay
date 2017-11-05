@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "cd server && npm start",
+    "start": "node server/dist",
     "postinstall": "bash ./postinstall"
   },
   "engines": {
