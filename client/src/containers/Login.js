@@ -16,7 +16,7 @@ class Login extends React.Component {
     const password = this.refs.form.password.value
 
     try {
-      const user = await firebase.auth().signInWithEmailAndPassword(
+      await firebase.auth().signInWithEmailAndPassword(
         email, password
       )
       this.props.history.push('/home')
