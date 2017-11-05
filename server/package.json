@@ -3,6 +3,8 @@
   "version": "0.0.0",
   "description": "",
   "scripts": {
+    "preinstall": "NODE_ENV=development npm install && tsc src/index.ts --outDir dist",
+    "start": "PORT=80 node dist",
     "dev": "nodemon --exec ts-node -- src/index.ts"
   },
   "author": "",
