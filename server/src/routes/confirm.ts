@@ -5,7 +5,6 @@ import router, { Context } from '../router'
 router
   .get('/confirm', async (ctx: Context) => {
     const { code } = ctx.query
-    console.log(code)
 
     const users = await firebase.database()
       .ref('users')
