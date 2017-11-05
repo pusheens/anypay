@@ -2,6 +2,7 @@ import * as body from 'koa-body'
 import * as firebase from 'firebase-admin'
 import axios from 'axios'
 import email from '../lib/email'
+import uploadPhoto from '../middleware/uploadPhoto'
 
 import router, { Context } from '../router'
 
@@ -14,19 +15,12 @@ router.post('/signup',
     const { email } = ctx.request.body.fields
     const { photo } = ctx.request.body.files
 
-    const [pic] = await firebase
-      .storage()
-      .bucket('anypay-e40b4.appspot.com')
-      .upload(photo.path)
-
-    await pic.makePublic()
-
-    const [metadata]: Array<any> = await pic.getMetadata()
+    const {pic, mediaLink} = await uploadPhoto(photo)
 
     try {
       ctx.state.user = await firebase.auth().createUser({
         email,
-        photoURL: metadata.mediaLink
+        photoURL: mediaLink
       })
       const token = await firebase.auth().createCustomToken(ctx.state.user.uid)
       ctx.status = 200
@@ -38,6 +32,7 @@ router.post('/signup',
     }
     await next()
   },
+  // Create person with email as the name
   async (ctx: Context) => {
     const { data: { personId } } = await axios({
       method:'POST',
@@ -51,9 +46,11 @@ router.post('/signup',
       }
     })
 
+    // Send confirmation email to new user
     const confirmationCode = await email.sendConfirmation(ctx.state.user.email)
 
     await Promise.all([
+      // Upload photo as a persistent face to the person
       axios({
         method:'POST',
         url:`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/grouptest/persons/${personId}/persistedFaces`,
@@ -65,6 +62,7 @@ router.post('/signup',
           url: ctx.state.user.photoURL
         }
       }),
+      // Create user initial values in firebase
       firebase
         .database()
         .ref('users')

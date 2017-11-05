@@ -2,6 +2,7 @@ import * as firebase from 'firebase-admin'
 import * as body from 'koa-body'
 import axios from 'axios'
 import router, { Context } from '../router'
+import uploadPhoto from '../middleware/uploadPhoto'
 
 router
   .post('/detect_face',
@@ -12,17 +13,7 @@ router
     // Get photo from request
     const photo = ctx.request.body.files.photo
 
-    // add money to receiving user's account
-    const [pic] = await firebase
-      .storage()
-      .bucket('anypay-e40b4.appspot.com')
-      .upload(photo.path)
-
-    // Make photo available with out being signed in
-    await pic.makePublic()
-
-    //Get photo metadata
-    const [metadata]: Array<any> = await pic.getMetadata()
+    const {pic, mediaLink} = await uploadPhoto(photo)
 
     // Send photo to API, get faceId (used in identify) 
     const { data } = await axios({
@@ -33,7 +24,7 @@ router
         "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
       },
       data: {
-        url: metadata.mediaLink
+        url: mediaLink
       }
     })
 
