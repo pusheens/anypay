@@ -1,7 +1,7 @@
 {
   "scripts": {
     "start": "cd server && ts-node src",
-    "postinstall": "bash ./postinstall"
+    "deploy": "now --docker"
   },
   "engines": {
     "node": "6.11.1"
