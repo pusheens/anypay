@@ -6,7 +6,7 @@ export default class Profile extends React.Component {
 
     return (
       <div className={`profile ${bgClass} ${sizeClass}`}>
-        <img src={img} alt='Profile' />
+        <span className='image' style={{ backgroundImage: `url('${img}')` }}></span>
         <h1 className='title'>{title}</h1>
         <h3 className='subtitle'>{subtitle}</h3>
       </div>
