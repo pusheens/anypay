@@ -1,7 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import firebase from 'firebase'
 
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route, withRouter } from 'react-router-dom'
 
 import Home from './containers/Home'
 import Login from './containers/Login'
@@ -17,29 +18,43 @@ import Signup6 from './containers/Signup6'
 
 import './firebase'
 
-const PrimaryLayout = () => (
-  <div>
-    <Route path='/' exact component={Login} />
+firebase.auth().sendPasswordResetEmail('nbreaton+liz@gmail.com')
 
-    <Route path='/signup1' name='signup1' component={Signup1} />
-    <Route path='/signup2' name='signup2' component={Signup2} />
-    <Route path='/signup3' name='signup3' component={Signup3} />
-    <Route path='/signup4' name='signup4' component={Signup4} />
-    <Route path='/signup5' name='signup5' component={Signup5} />
-    <Route path='/signup6' name='signup6' component={Signup6} />
+class PrimaryLayout extends React.Component {
+  componentDidMount() {
+    firebase.auth().onAuthStateChanged(user => {
+      console.log(user.email)
+    })
+  }
+  render() {
+    return (
+      <div>
+        <Route path='/' exact component={Login} />
 
-    <Route path='/home' name='home' component={Home} />
+        <Route path='/signup1' name='signup1' component={Signup1} />
+        <Route path='/signup2' name='signup2' component={Signup2} />
+        <Route path='/signup3' name='signup3' component={Signup3} />
+        <Route path='/signup4' name='signup4' component={Signup4} />
+        <Route path='/signup5' name='signup5' component={Signup5} />
+        <Route path='/signup6' name='signup6' component={Signup6} />
 
-    <Route path='/sendmoney1' name='sendmoney1' component={SendMoney1} />
-    <Route path='/sendmoney2/:receiver/:photoUrl' name='sendmoney2' component={SendMoney2} />
-    <Route path='/sendmoney3' name='sendmoney3' component={SendMoney3} />
-  </div>
-)
+        <Route path='/home' name='home' component={Home} />
+
+        <Route path='/sendmoney1' name='sendmoney1' component={SendMoney1} />
+        <Route path='/sendmoney2/:receiver/:photoUrl' name='sendmoney2' component={SendMoney2} />
+        <Route path='/sendmoney3' name='sendmoney3' component={SendMoney3} />
+      </div>
+    )
+  }
+}
+
+const PrimaryWithRouter = withRouter(PrimaryLayout)
 
 const root = document.getElementById('root')
 
 ReactDOM.render(
   <BrowserRouter>
-    <PrimaryLayout />
-  </BrowserRouter>
-, root)
+    <PrimaryWithRouter />
+  </BrowserRouter>,
+  root
+)

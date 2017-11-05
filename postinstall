@@ -1,0 +1,6 @@
+#!/bin/bash
+cd server
+npm install
+curl https://firebasestorage.googleapis.com/v0/b/anypay-e40b4.appspot.com/o/static%2Fkey-azure.json?alt=media&token=3670dc81-834e-4a6e-81a1-e3c448bab276 -o key-azure.json
+curl https://firebasestorage.googleapis.com/v0/b/anypay-e40b4.appspot.com/o/static%2Fkey-firebase.json?alt=media&token=7dc4e7c3-d98f-487b-94b4-c9cc9d5dfc7e -o key-firebase.json
+curl https://firebasestorage.googleapis.com/v0/b/anypay-e40b4.appspot.com/o/static%2Fkey-sendgrid.json?alt=media&token=ccbd1edb-6660-4b24-9c57-7f145d45c867 -o key-sendgrid.json
