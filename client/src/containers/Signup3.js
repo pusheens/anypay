@@ -2,7 +2,6 @@ import React from 'react'
 
 import Anchor from '../components/Anchor'
 import Button from '../components/Button'
-import Logo from '../components/Logo'
 
 export default class Signup1 extends React.Component {
   render () {

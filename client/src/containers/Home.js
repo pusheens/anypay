@@ -17,7 +17,7 @@ export default class Home extends React.Component {
         </div>
         <div className='flex-middle is-centered'>
           <span className='text-oversized'>${balance}</span>
-          <Button to='' text='Claim Rewards' type='dark' />
+          <Button to='' text='Claim Rewards' type='primary' />
         </div>
         <div className='flex-end is-centered'>
           <Button to='/sendmoney1' text='Send Money' type='gradient' />

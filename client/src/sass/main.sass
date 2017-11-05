@@ -46,6 +46,10 @@ h2
 h3
   font-weight: normal
 
+.text-large
+  font-size: 50px
+  font-weight: $weightHeavy
+
 .text-oversized
   font-size: 72px
   font-weight: $weightHeavy
@@ -107,7 +111,7 @@ h3
   font-size: $height
   line-height: $height
   display: block
-  font-weight: $weightHeavy
+  font-weight: normal
   text-align: center
   text-decoration: none
 
@@ -115,9 +119,13 @@ h3
     @include gradient()
     color: #fff
 
+  &.primary
+    background: $primaryColor
+    color: #fff
+
   &.light
     background: #fff
-    color: $darkColor
+    color: $primaryColor
 
   &.dark
     background: $darkColor
@@ -154,6 +162,10 @@ h3
   bottom: 0
   content: ''
   z-index: -1
+
+.logo
+  width: 40%
+  padding: 15% 28% 0 32%
 
 //______________________________________________________________________________
 //                               PROFILE

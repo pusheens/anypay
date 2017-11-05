@@ -14,6 +14,10 @@ h2 {
 h3 {
   font-weight: normal; }
 
+.text-large {
+  font-size: 50px;
+  font-weight: 800; }
+
 .text-oversized {
   font-size: 72px;
   font-weight: 800; }
@@ -64,15 +68,18 @@ h3 {
   font-size: 20px;
   line-height: 20px;
   display: block;
-  font-weight: 800;
+  font-weight: normal;
   text-align: center;
   text-decoration: none; }
   .button.gradient {
     background: linear-gradient(30deg, #21D4FD 0%, #B721FF 100%);
     color: #fff; }
+  .button.primary {
+    background: #21D4FD;
+    color: #fff; }
   .button.light {
     background: #fff;
-    color: #333; }
+    color: #21D4FD; }
   .button.dark {
     background: #333;
     color: #fff; }
@@ -104,6 +111,10 @@ h3 {
   bottom: 0;
   content: "";
   z-index: -1; }
+
+.logo {
+  width: 40%;
+  padding: 15% 28% 0 32%; }
 
 .profile {
   padding: 5% 0; }

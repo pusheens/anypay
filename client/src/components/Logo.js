@@ -2,6 +2,6 @@ import React from 'react'
 
 export default class Logo extends React.Component {
   render () {
-    return <h1>anypay</h1>
+    return <img className='logo' src='logo2.png' alt='anypay' />
   }
 }
