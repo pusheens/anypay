@@ -36,6 +36,16 @@ router
     // Get groupId
     const groupId = await groupIdHelepr.getGroupId()
 
+    // Train AI
+    await axios({
+      method: 'POST',
+      url: `https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/${groupId}/train`,
+      headers: {
+        "Content-Type": "application/json",
+        "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
+      }
+    })
+    
     // Send faceId and groupId to search for matching candidates 
     try {
       var { data: candidateArray } = await axios({
