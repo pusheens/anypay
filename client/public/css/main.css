@@ -174,7 +174,7 @@ h3 {
 
 .has-float-label input:placeholder-shown:not(:focus) + *,
 .has-float-label select.unselected:not(:focus) + * {
-  font-size: 150%;
+  font-size: 135%;
   opacity: 0.5;
   color: #6C727C; }
 
@@ -182,6 +182,9 @@ h3 {
 .has-float-label select:focus {
   outline: none;
   border-color: #21D4FD; }
+
+.has-float-label select {
+  background-color: #fff; }
 
 .input-group {
   display: table;
@@ -195,14 +198,14 @@ h3 {
 .camera canvas {
   display: none; }
 
-.camera video#camera-stream.visible {
-  display: block;
+.camera video#camera-stream {
+  display: none;
   width: 100%;
   border-radius: 10px; }
 
 .camera .capture {
   background: linear-gradient(30deg, #21D4FD 0%, #B721FF 100%);
-  display: block;
+  display: none;
   margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
@@ -210,5 +213,9 @@ h3 {
   height: 60px;
   border-radius: 50%;
   border: 10px solid #C6CBD4; }
+
+.camera .capture.visible,
+.camera video#camera-stream.visible {
+  display: block; }
 
 /*# sourceMappingURL=main.css.map */
