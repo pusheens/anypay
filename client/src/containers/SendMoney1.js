@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Button from '../components/Button'
+import Camera from '../components/Camera'
 
 export default class SendMoney1 extends React.Component {
   render () {
@@ -9,10 +9,10 @@ export default class SendMoney1 extends React.Component {
         <div className='flex-start is-centered'>
           <h1>Take their photo</h1>
         </div>
-        <div className='flex-middle'>&nbsp;</div>
-        <div className='flex-end is-centered'>
-          <Button to='/sendmoney2' text='Continue' type='gradient' />
+        <div className='flex-middle'>
+          <Camera to='/sendmoney2' />
         </div>
+        <div className='flex-end is-centered'>&nbsp;</div>
       </div>
     )
   }

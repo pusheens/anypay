@@ -15,6 +15,8 @@ import Signup4 from './containers/Signup4'
 import Signup5 from './containers/Signup5'
 import Signup6 from './containers/Signup6'
 
+import './firebase'
+
 const PrimaryLayout = () => (
   <div>
     <Route path='/' exact component={Login} />

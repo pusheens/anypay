@@ -31,7 +31,7 @@ router
     // Train AI
     await axios({
       method: 'POST',
-      url: "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/grouptest/train",
+      url: "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/pusheen/train",
       headers: {
         "Content-Type": "application/json",
         "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
@@ -48,7 +48,7 @@ router
       },
       data: {
         faceIds: [data[0].faceId],
-        personGroupId: 'grouptest'
+        personGroupId: 'pusheen'
       }
     })
 
