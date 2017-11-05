@@ -258,3 +258,26 @@ h3
 .input-group > *
   display: table-cell
   width: 50%
+
+//______________________________________________________________________________
+//                                CAMERA
+//______________________________________________________________________________
+
+.camera canvas
+  display: none
+
+.camera video#camera-stream.visible
+  display: block
+  width: 100%
+  border-radius: 10px
+
+.camera .capture
+  @include gradient()
+  display: block
+  margin-top: 5%
+  margin-left: auto
+  margin-right: auto
+  width: 60px
+  height: 60px
+  border-radius: 50%
+  border: 10px solid $lightColor
