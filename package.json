@@ -1,0 +1,6 @@
+{
+  "scripts": {
+    "start": "cd server && npm start",
+    "postinstall": "bash ./postinstall"
+  }
+}
