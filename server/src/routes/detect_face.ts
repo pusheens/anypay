@@ -72,9 +72,10 @@ router
 
     // If the candidate is found in firebase, return it in the response
     if (candidate) {
-      for (let user in users) {
-        if (users[user].personId == candidate.personId) {
-          ctx.body = { user, confidence: candidate.confidence }
+      for (let id in users) {
+        if (users[id].personId == candidate.personId) {
+          const user = await firebase.auth().getUser(id)
+          ctx.body = { user: id, confidence: candidate.confidence, photoUrl: user.photoURL }
           ctx.status = 200
           return
         }
