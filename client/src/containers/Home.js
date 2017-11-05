@@ -9,46 +9,59 @@ import Profile from '../components/Profile'
 export default class Home extends React.Component {
   constructor (props) {
     super(props)
-    this.state = { 
+    this.state = {
       name: null,
-      photoUrl: null
+      email: null,
+      photoUrl: null,
+      bankFlag: null,
+      cardNumber: null
     }
   }
 
   componentDidMount(){
     firebase.auth().onAuthStateChanged(user => {
-      this.setState({ 
+      this.setState({
         name: user.displayName,
+        email: user.email,
         photoUrl: user.photoURL
-      })      
-    })    
+      })
+    })
     if (firebase.auth().currentUser) {
-      this.setState({ 
+      this.setState({
         name: firebase.auth().currentUser.displayName,
+        email: firebase.auth().currentUser.email,
         photoUrl: firebase.auth().currentUser.photoURL
-      })      
+      })
     }
       //const user2 = await axios.get(`http://anypay-fyirqubpoo.now.sh/user_info?email=${user.email}`)
     
   }
-  
+
   render () {
     const numAccounts = 2
-    const balance = '20.00'
+    const balance = '0.00'
 
     return (
       <div className='container'>
         <div className='flex-start'>
           <div className='splash'>
-            <Profile title={this.state.name} subtitle={`${numAccounts} Linked Accounts`} img={this.state.photoUrl} />
+            <Profile title={this.state.name} subtitle={this.state.email} img={this.state.photoUrl} />
           </div>
         </div>
         <div className='flex-middle is-centered'>
           <span className='text-oversized'>${balance}</span>
-          <Button to='' text='Claim Rewards' type='primary' />
+          { this.state.bankFlag === true ?
+            <Button to='' text='Claim Rewards' type='primary' />
+          :
+            <Button to='/bankAccount' text='Add Bank Account' type='primary' />
+          }
         </div>
         <div className='flex-end is-centered'>
-          <Button to='/sendmoney1' text='Send Money' type='gradient' />
+          { this.state.cardNumber ?
+            <Button to='/sendmoney1' text='Send Money' type='gradient' />
+          :
+            <Button to='/creditCard' text='Add Credit Card' type='gradient' />
+          }
         </div>
       </div>
     )

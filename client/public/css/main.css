@@ -93,10 +93,14 @@ h3 {
 
 .flex-end .button {
   position: fixed;
-  top: 550px;
+  top: 500px;
   left: 5%;
   right: 5%;
   width: auto; }
+
+.flex-end .link {
+  position: fixed;
+  top: 575px; }
 
 .splash {
   height: 275px;
