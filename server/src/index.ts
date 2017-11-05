@@ -9,6 +9,7 @@ import './routes/confirm'
 import './routes/detect_face'
 import './routes/send'
 import './routes/signup'
+import './routes/credit_card'
 
 const app = new Koa()
 
