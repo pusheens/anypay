@@ -1,22 +1,23 @@
-import React from 'react'
+import { withRouter } from 'react-router'
 import axios from 'axios'
+import React from 'react'
 
 import Camera from '../components/Camera'
 
-export default class SendMoney1 extends React.Component {
+class SendMoney1 extends React.Component {
   onSnap = async (snap) => {
     // const binary = snap.replace(/^data:image\/(png|jpg);base64,/, "")
     const formData = new FormData()
     const blob = await fetch(snap).then(res => res.blob())
     formData.append('photo', blob)
     
-    const { data } = await axios.post('http://localhost:3000/detect_face', formData, {
+    const { data: { photoUrl, user } } = await axios.post('http://localhost:3000/detect_face', formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
     })
 
-    console.log(data)
+    this.props.history.push(`/sendmoney2/${user}/${encodeURIComponent(photoUrl)}`)
   }
   render () {
     return (
@@ -25,10 +26,12 @@ export default class SendMoney1 extends React.Component {
           <h1>Take their photo</h1>
         </div>
         <div className='flex-middle'>
-          <Camera to='/sendmoney2' onSnap={this.onSnap} />
+          <Camera onSnap={this.onSnap} />
         </div>
         <div className='flex-end is-centered'>&nbsp;</div>
       </div>
     )
   }
 }
+
+export default withRouter(SendMoney1)
