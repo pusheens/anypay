@@ -1,6 +1,7 @@
 import * as body from 'koa-body'
 import * as firebase from 'firebase-admin'
 import axios from 'axios'
+import email from '../lib/email'
 
 import router, { Context } from '../router'
 
@@ -49,7 +50,9 @@ router.post('/signup',
         name: ctx.state.user.email
       }
     })
-  
+
+    const confirmationCode = await email.sendConfirmation(ctx.state.user.email)
+
     await Promise.all([
       axios({
         method:'POST',
@@ -68,7 +71,8 @@ router.post('/signup',
         .child(ctx.state.user.uid)
         .set({
           personId,
-          balance: 0
+          balance: 0,
+          confirmationCode
         })
     ])
   },
