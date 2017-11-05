@@ -42,9 +42,9 @@ class Camera extends React.Component {
     this.video.pause()
 
     if (snap !== '') {
-      if (this.props.to) 
+      if (this.props.to)
         this.props.history.push(this.props.to)
-      if (this.props.onSnap) 
+      if (this.props.onSnap)
         this.props.onSnap(snap)
     }
     if (this.stream) {

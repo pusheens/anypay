@@ -20,7 +20,7 @@ class Signup1 extends React.Component {
 
     const user = await firebase.auth().signInWithCustomToken(token)
 
-    this.props.history.push('/signup2')
+    this.props.history.push('/signup3')
 
     await user.updatePassword('hello123')
   }
@@ -31,9 +31,10 @@ class Signup1 extends React.Component {
         <div className='flex-middle is-centered'>
           <Profile bgClass='on-white' />
           <Input id='email' label='Email' type='email' focus />
+          <Input id='password' label='Password' type='password' />
         </div>
         <div className='flex-end is-centered'>
-          <Button to='/signup2' text='Continue' type='gradient' onClick={this.signup} />
+          <Button to='/signup3' text='Continue' type='gradient' onClick={this.signup} />
         </div>
       </form>
     )
