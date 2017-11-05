@@ -17,7 +17,7 @@ router
     ctx.status = 200
   })
 
-  // Returns credtcards on a user's account
+// Returns credtcards on a user's account
 router
   .get('/credit_card', async (ctx: Context) => {
     const { userId } = ctx.query

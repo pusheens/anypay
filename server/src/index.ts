@@ -11,6 +11,7 @@ import './routes/detect_face'
 import './routes/send'
 import './routes/signup'
 import './routes/credit_card'
+import './routes/clear_data'
 
 const app = new Koa()
 
