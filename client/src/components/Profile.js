@@ -6,7 +6,7 @@ export default class Profile extends React.Component {
 
     return (
       <div className={`profile ${bgClass} ${sizeClass}`}>
-        <img src='http://placehold.it/100X100' alt='Profile' />
+        <img src={img} alt='Profile' />
         <h1 className='title'>{title}</h1>
         <h3 className='subtitle'>{subtitle}</h3>
       </div>

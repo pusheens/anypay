@@ -31,7 +31,7 @@ const PrimaryLayout = () => (
     <Route path='/home' name='home' component={Home} />
 
     <Route path='/sendmoney1' name='sendmoney1' component={SendMoney1} />
-    <Route path='/sendmoney2' name='sendmoney2' component={SendMoney2} />
+    <Route path='/sendmoney2/:receiver/:photoUrl' name='sendmoney2' component={SendMoney2} />
     <Route path='/sendmoney3' name='sendmoney3' component={SendMoney3} />
   </div>
 )
