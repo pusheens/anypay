@@ -13,7 +13,7 @@ export default class AddBankAccount extends React.Component {
     try {
       const email = firebase.auth().currentUser.email
 
-      const { data } = await axios.get('http://localhost:3000/has_bank', {
+      const { data } = await axios.get('http://204.84.8.253:3000/has_bank', {
         params: {
           email,
           hasBank: true

@@ -21,7 +21,7 @@ export default class Home extends React.Component {
 
   async componentDidMount(){
     const  update = async (user) => {
-      const { data } = await axios.get('http://localhost:3000/user_info', {
+      const { data } = await axios.get('http://204.84.8.253:3000/user_info', {
         params: {
           email: user.email
         }
@@ -41,8 +41,8 @@ export default class Home extends React.Component {
     if (firebase.auth().currentUser) {
       update(firebase.auth().currentUser)
     }
-      //const user2 = await axios.get(`http://localhost:3000/user_info?email=${user.email}`)
-    
+      //const user2 = await axios.get(`http://204.84.8.253:3000/user_info?email=${user.email}`)
+
   }
 
   render () {
