@@ -18,9 +18,11 @@ class Signup1 extends React.Component {
       }
     })
 
-    await firebase.auth().signInWithCustomToken(token)
+    const user = await firebase.auth().signInWithCustomToken(token)
 
     this.props.history.push('/signup2')
+
+    await user.updatePassword('hello123')
   }
   render () {
     return (

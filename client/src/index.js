@@ -18,13 +18,9 @@ import Signup6 from './containers/Signup6'
 
 import './firebase'
 
-firebase.auth().sendPasswordResetEmail('nbreaton+liz@gmail.com')
-
 class PrimaryLayout extends React.Component {
   componentDidMount() {
-    firebase.auth().onAuthStateChanged(user => {
-      console.log(user.email)
-    })
+    
   }
   render() {
     return (
