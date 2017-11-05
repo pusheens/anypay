@@ -11,7 +11,7 @@ import firebase from 'firebase'
 class Signup1 extends React.Component {
   signup = async (event) => {
     event.preventDefault();
-    
+
     const { data: { token } } = await axios.post('http://localhost:3000/signup', {
       data: {
         email: this.refs.container.email.value
