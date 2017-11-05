@@ -37,11 +37,11 @@ router.post('/signup',
   // Create person with email as the name
   async (ctx: Context) => {
     //Get groupId
-    const groupdId = groupIdHelper.getGroupId()
+    const groupId = await groupIdHelper.getGroupId()
     
     const { data: { personId } } = await axios({
       method:'POST',
-      url:`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/${groupdId}/persons`,
+      url:`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/${groupId}/persons`,
       headers: {
         "Content-Type":"application/json",
         "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
@@ -54,11 +54,21 @@ router.post('/signup',
     // Send confirmation email to new user
     const confirmationCode = await email.sendConfirmation(ctx.state.user.email)
 
+    // Train AI
+    await axios({
+      method: 'POST',
+      url: `https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/${groupId}/train`,
+      headers: {
+        "Content-Type": "application/json",
+        "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
+      }
+    })
+
     await Promise.all([
       // Upload photo as a persistent face to the person
       axios({
         method:'POST',
-        url:`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/${groupdId}/persons/${personId}/persistedFaces`,
+        url:`https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/${groupId}/persons/${personId}/persistedFaces`,
         headers: {
           "Content-Type":"application/json",
           "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI

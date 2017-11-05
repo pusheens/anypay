@@ -17,44 +17,42 @@ router
     const {pic, mediaLink} = await uploadPhoto(photo)
 
     // Send photo to API, get faceId (used in identify) 
-    const { data } = await axios({
-      method: 'POST',
-      url: "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true",
-      headers: {
-        "Content-Type": "application/json",
-        "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
-      },
-      data: {
-        url: mediaLink
-      }
-    })
-
+    try {
+      var { data } = await axios({
+        method: 'POST',
+        url: "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true",
+        headers: {
+          "Content-Type": "application/json",
+          "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
+        },
+        data: {
+          url: mediaLink
+        }
+      })
+    } catch (error) {
+      console.log('FAILED TO GET FACE IDs', error.response.data)
+    }
+    
     // Get groupId
-    const groupId = groupIdHelepr.getGroupId()
-
-    // Train AI
-    await axios({
-      method: 'POST',
-      url: `https://westcentralus.api.cognitive.microsoft.com/face/v1.0/persongroups/${groupId}/train`,
-      headers: {
-        "Content-Type": "application/json",
-        "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
-      }
-    })
+    const groupId = await groupIdHelepr.getGroupId()
 
     // Send faceId and groupId to search for matching candidates 
-    var { data: candidateArray } = await axios({
-      method: 'POST',
-      url: "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/identify",
-      headers: {
-        "Content-Type": "application/json",
-        "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
-      },
-      data: {
-        faceIds: [data[0].faceId],
-        personGroupId: `${groupId}`
-      }
-    })
+    try {
+      var { data: candidateArray } = await axios({
+        method: 'POST',
+        url: "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/identify",
+        headers: {
+          "Content-Type": "application/json",
+          "Ocp-Apim-Subscription-Key": require('../../key-azure.json').faceAI
+        },
+        data: {
+          faceIds: [data[0].faceId],
+          personGroupId: `${groupId}`
+        }
+      })
+    } catch (error) {
+      console.log('FAILED TO GET CANDIDATES', error.response.data)
+    }
 
     // Return a candidate if the confidence level is or above 50%
     const candidate = candidateArray[0].candidates.find((candidate: any) => {
