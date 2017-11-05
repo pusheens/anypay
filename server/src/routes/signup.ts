@@ -13,7 +13,7 @@ router.post('/signup',
   }),
   // create account
   async (ctx: Context, next) => {
-    const email = ctx.request.body.email || ctx.request.body.fields.email
+    const email = ctx.request.body.fields.email
     const { photo } = ctx.request.body.files
 
     const {pic, mediaLink} = await uploadPhoto(photo)
@@ -52,7 +52,7 @@ router.post('/signup',
     })
 
     // Send confirmation email to new user
-    const confirmationCode = await email.sendConfirmation(ctx.state.user.email)
+    // const confirmationCode = await email.sendConfirmation(ctx.state.user.email)
 
     // Train AI
     await axios({
@@ -85,7 +85,7 @@ router.post('/signup',
         .set({
           personId,
           balance: 0,
-          confirmationCode,
+          // confirmationCode,
           creditCards: []
         })
     ])

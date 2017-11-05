@@ -7,7 +7,6 @@ export default async function uploadPhoto(photo: any): Promise<any>{
       .storage()
       .bucket('anypay-e40b4.appspot.com')
       .upload(photo.path)
-      // .upload(resolve(__dirname, '../../image.jpg'))
 
     // Make photo available with out being signed in
     await pic.makePublic()

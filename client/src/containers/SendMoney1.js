@@ -15,6 +15,8 @@ export default class SendMoney1 extends React.Component {
         'Content-Type': 'multipart/form-data'
       }
     })
+
+    console.log(data)
   }
   render () {
     return (

@@ -56,7 +56,7 @@ router
 
     // Return a candidate if the confidence level is or above 50%
     const candidate = candidateArray[0].candidates.find((candidate: any) => {
-      return candidate.confidence > 0.5
+      return candidate.confidence > 0.25
     })
 
     // Delete photo as it is only temporarily needed to find a match
