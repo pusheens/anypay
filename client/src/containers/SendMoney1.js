@@ -4,6 +4,7 @@ import React from 'react'
 
 import Camera from '../components/Camera'
 import { openLoader } from '../components/Loader'
+import api from '../lib/api'
 
 class SendMoney1 extends React.Component {
   onSnap = async (snap) => {
@@ -13,7 +14,7 @@ class SendMoney1 extends React.Component {
     const blob = await fetch(snap).then(res => res.blob())
     formData.append('photo', blob)
 
-    const { data: { photoUrl, user } } = await axios.post('https://us-central1-anypay-e40b4.cloudfunctions.net/app/detect', formData, {
+    const { data: { photoUrl, user } } = await axios.post(`${api}/detect`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }

@@ -5,6 +5,7 @@ import Button from '../components/Button'
 import Input from '../components/Input'
 import Profile from '../components/Profile'
 import { openLoader } from '../components/Loader'
+import api from '../lib/api'
 
 import axios from 'axios'
 import firebase from 'firebase'
@@ -36,7 +37,7 @@ class Signup1 extends React.Component {
       formData.append('name', this.refs.container.fullname.value)
       formData.append('photo', this.blob)
       
-      const { data: { token } } = await axios.post('https://us-central1-anypay-e40b4.cloudfunctions.net/app/signup', formData, {
+      const { data: { token } } = await axios.post(`${api}/signup`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
