@@ -36,7 +36,7 @@ class Signup1 extends React.Component {
       formData.append('name', this.refs.container.fullname.value)
       formData.append('photo', this.blob)
       
-      const { data: { token } } = await axios.post('http://localhost:8080/signup', formData, {
+      const { data: { token } } = await axios.post('https://us-central1-anypay-e40b4.cloudfunctions.net/app/signup', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
