@@ -52,7 +52,7 @@ app.post('/detect', upload.single('photo'), async (req, res) => {
     })
 
     const candidate = candidateArray[0].candidates.find((candidate: any) => {
-      return candidate.confidence > 0.25
+      return candidate.confidence > 0.5
     })
 
     console.log('delete photo from firebase')
