@@ -32,7 +32,7 @@ class PrimaryLayout extends React.Component {
         <Route path='/signup3' name='signup3' component={Signup3} />
         <Route path='/signup4' name='signup4' component={Signup4} />
         <Route path='/signup5' name='signup5' component={Signup5} />
-        <Route path='/signup6' name='signup6' component={Signup6} />
+        <Route path='/signup6/:number' name='signup6' component={Signup6} />
 
         <Route path='/home' name='home' component={Home} />
         <Route path='/bankAccount' name='bankAccount' component={AddBankAccount} />

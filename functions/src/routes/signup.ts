@@ -4,10 +4,6 @@ import * as firebase from 'firebase-admin'
 import uploadPhoto from '../lib/uploadPhoto'
 import axios from 'axios'
 
-const auth: express.RequestHandler = async (req, res, next) => {
-  const token = req.header('token')
-}
-
 app.post('/signup', upload.single('photo'), async (req, res, next) => {
   try {
     const { photo, link } = await uploadPhoto(req.file.path)
