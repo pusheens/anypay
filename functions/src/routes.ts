@@ -1,4 +1,5 @@
-import './routes/signup'
-import './routes/reset'
 import './routes/card'
 import './routes/detect'
+import './routes/reset'
+import './routes/send'
+import './routes/signup'

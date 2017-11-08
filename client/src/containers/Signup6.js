@@ -11,7 +11,7 @@ import api from '../lib/api'
 
 class Signup6 extends React.Component {
   save = async () => {
-    const { data } = await axios.post(`${api}/card`, { 
+    await axios.post(`${api}/card`, { 
       number: this.props.match.params.number
     }, {
       headers: {
