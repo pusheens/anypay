@@ -12,6 +12,7 @@
   "private": true,
   "devDependencies": {
     "@types/cors": "^2.8.1",
+    "@types/delay": "^2.0.1",
     "@types/koa": "^2.0.39",
     "@types/koa-compose": "^3.2.2",
     "@types/koa-router": "^7.0.23",
@@ -24,6 +25,7 @@
   "dependencies": {
     "@koa/cors": "^2.2.1",
     "axios": "^0.17.0",
+    "delay": "^2.0.0",
     "email-validator": "^1.1.1",
     "firebase-admin": "^5.4.3",
     "koa": "^2.3.0",
