@@ -34,6 +34,9 @@ h3 {
   flex-direction: column;
   position: relative; }
 
+@media (max-width: 500px) {
+  .container {
+    min-height: 100vh; } }
 .container.gradient {
   background: linear-gradient(30deg, #21D4FD 0%, #B721FF 100%);
   color: #fff;
@@ -113,7 +116,7 @@ h3 {
   position: absolute;
   top: -50px;
   left: -110px;
-  right: -80px;
+  right: -90px;
   bottom: 0;
   content: "";
   z-index: -1; }
