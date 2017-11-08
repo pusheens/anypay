@@ -28,22 +28,28 @@ class Signup1 extends React.Component {
   signup = async (event) => {
     event.preventDefault();
     this.closeLoader = openLoader()
-    const formData = new FormData()
     
-    formData.append('email', this.refs.container.email.value)
-    formData.append('name', this.refs.container.fullname.value)
-    formData.append('photo', this.blob)
-    
-    const { data: { token } } = await axios.post('http://204.84.8.253:3000/signup', formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data'
-      }
-    })
-
-    const user = await firebase.auth().signInWithCustomToken(token)
-    await user.updatePassword(this.refs.container.password.value)
-    this.closeLoader()
-    this.props.history.push('/signup3')
+    try {
+      const formData = new FormData()
+      
+      formData.append('email', this.refs.container.email.value)
+      formData.append('name', this.refs.container.fullname.value)
+      formData.append('photo', this.blob)
+      
+      const { data: { token } } = await axios.post('http://localhost:8080/signup', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      })
+  
+      const user = await firebase.auth().signInWithCustomToken(token)
+      await user.updatePassword(this.refs.container.password.value)
+      this.closeLoader()
+      this.props.history.push('/signup3')
+    } catch (error) {
+      console.log(error)
+      this.closeLoader()
+    }
   }
   render () {
     return (

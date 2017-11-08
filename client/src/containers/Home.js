@@ -15,12 +15,12 @@ class Home extends React.Component {
       <div className='container'>
         <div className='flex-start'>
           <div className='splash'>
-            <Profile title={record.name} subtitle={record.email} img={record.photoUrl} />
+            <Profile title={record.displayName} subtitle={record.email} img={record.photoURL} />
           </div>
         </div>
         <div className='flex-middle is-centered'>
-          <span className='text-oversized'>${data.balance && data.balance.toFixed(0)}</span>
-          { data.bankFlag === 'true' ?
+          <span className='text-oversized'>${data.balance && data.balance.toFixed(2)}</span>
+          { data.hasBank ?
             <Button to='' text='Claim Rewards' type='primary' />
           :
             <Button to='/bankAccount' text='Add Bank Account' type='primary' />
