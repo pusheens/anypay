@@ -1,3 +1,4 @@
+import './routes/bank'
 import './routes/card'
 import './routes/detect'
 import './routes/reset'
