@@ -5,15 +5,18 @@ import Button from '../components/Button'
 import Input from '../components/Input'
 import Profile from '../components/Profile'
 import Select from '../components/Select'
+import withUser from './withUser'
 
 class SendMoney2 extends React.Component {
   render () {
     const { photoUrl } = this.props.match.params
+    const { creditCards } = this.props.user.data
 
-    const accounts = [
-      { value: '1', text: '**** **** **** 0000' },
-      { value: '2', text: '**** **** **** 0000' }
-    ]
+    const accounts = !creditCards 
+      ? [] 
+      : Object.values(creditCards).map((number, i) => (
+        { value: i + 1, text: '**** **** **** ' + number.substring(15, 20) }
+      ))
 
     return (
       <div className='container'>
@@ -33,4 +36,4 @@ class SendMoney2 extends React.Component {
   }
 }
 
-export default withRouter(SendMoney2)
+export default withRouter(withUser(SendMoney2))

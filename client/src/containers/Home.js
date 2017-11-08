@@ -27,10 +27,10 @@ class Home extends React.Component {
           }
         </div>
         <div className='flex-end is-centered'>
-          { data.cardNumber ?
+          { data.creditCards ?
             <Button to='/sendmoney1' text='Send Money' type='gradient' />
           :
-            <Button to='/creditCard' text='Add Credit Card' type='gradient' />
+            <Button to='/signup4' text='Add Credit Card' type='gradient' />
           }
         </div>
       </div>
