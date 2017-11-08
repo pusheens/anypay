@@ -7,8 +7,23 @@ import Button from '../components/Button'
 import Profile from '../components/Profile'
 
 import withUser from './withUser'
+import api from '../lib/api'
+import { openLoader } from '../components/Loader'
 
 class Home extends React.Component {
+  claim = async event => {
+    event.preventDefault()
+    const closeLoader = openLoader()
+    try {
+      await axios.post(`${api}/claim`, {}, {
+        headers: {
+          'token': await this.props.user.record.getToken(true)
+        }
+      })
+    } finally {
+      closeLoader()
+    }
+  }
   render () {
     const { record, data } = this.props.user
     return (
@@ -21,7 +36,7 @@ class Home extends React.Component {
         <div className='flex-middle is-centered'>
           <span className='text-oversized'>${data.balance && data.balance.toFixed(2)}</span>
           { data.hasBank ?
-            <Button to='' text='Claim Rewards' type='primary' />
+            <Button to='' text='Claim Rewards' type='primary' onClick={this.claim} />
           :
             <Button to='/bankAccount' text='Add Bank Account' type='primary' />
           }

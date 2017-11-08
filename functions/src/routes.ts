@@ -1,5 +1,6 @@
 import './routes/bank'
 import './routes/card'
+import './routes/claim'
 import './routes/detect'
 import './routes/reset'
 import './routes/send'
