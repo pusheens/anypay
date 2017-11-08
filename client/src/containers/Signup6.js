@@ -1,5 +1,4 @@
 import React from 'react'
-import firebase from 'firebase'
 import axios from 'axios'
 import { withRouter } from 'react-router'
 
@@ -15,7 +14,7 @@ class Signup6 extends React.Component {
       number: this.props.match.params.number
     }, {
       headers: {
-        'token': await this.props.user.record.getToken(true)
+        'token': await this.props.user.record.getIdToken(true)
       }
     })
   }

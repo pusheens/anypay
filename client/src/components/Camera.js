@@ -83,9 +83,10 @@ class Camera extends React.Component {
   }
 
   render () {
+    /*eslint-disable*/
     return (
       <div className='camera'>
-        <a href='#' ref='clickToShow' onClick={this.clickToShow}>
+        <a href='#' ref='clickToShow' onClick={this.clickToShow}> 
           Click to Show Camera
         </a>
         <video muted id='camera-stream'></video>
@@ -93,6 +94,7 @@ class Camera extends React.Component {
         <canvas></canvas>
       </div>
     )
+    /*eslint-enable*/
   }
 }
 

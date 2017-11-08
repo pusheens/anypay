@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import firebase from 'firebase'
 import { format } from 'currency-formatter'
 
 import Button from '../components/Button'
@@ -16,7 +15,7 @@ class Home extends React.Component {
     try {
       await axios.post(`${api}/claim`, {}, {
         headers: {
-          'token': await this.props.user.record.getToken(true)
+          'token': await this.props.user.record.getIdToken(true)
         }
       })
     } finally {

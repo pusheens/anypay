@@ -16,7 +16,7 @@ class SendMoney2 extends React.Component {
 
     await axios.post(`${api}/send`, { amount: value, receiver }, {
       headers: {
-        'token': await this.props.user.record.getToken(true)
+        'token': await this.props.user.record.getIdToken(true)
       }
     })
   }

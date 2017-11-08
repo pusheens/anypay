@@ -1,6 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import firebase from 'firebase'
 
 import { BrowserRouter, Route, withRouter } from 'react-router-dom'
 

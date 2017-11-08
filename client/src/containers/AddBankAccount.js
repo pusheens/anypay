@@ -1,7 +1,6 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 import axios from 'axios'
-import firebase from 'firebase'
 
 import Button from '../components/Button'
 import Input from '../components/Input'
@@ -16,7 +15,7 @@ class AddBankAccount extends React.Component {
     try {
       await axios.post(`${api}/bank`, {}, {
         headers: {
-          'token': await this.props.user.record.getToken(true)
+          'token': await this.props.user.record.getIdToken(true)
         }
       })
       this.props.history.push('/home')
