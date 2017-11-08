@@ -2,7 +2,7 @@ import React from 'react'
 
 export default ({ children }) => (
   <div className='phone-wrapper'>
-    <div className='phone'>
+    <div className='phone phone-image'>
       <div className='phone-content'>
         {children}
       </div>
