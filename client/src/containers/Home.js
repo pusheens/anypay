@@ -1,11 +1,10 @@
 import React from 'react'
-
 import axios from 'axios'
 import firebase from 'firebase'
+import { format } from 'currency-formatter'
 
 import Button from '../components/Button'
 import Profile from '../components/Profile'
-
 import withUser from './withUser'
 import api from '../lib/api'
 import { openLoader } from '../components/Loader'
@@ -34,7 +33,9 @@ class Home extends React.Component {
           </div>
         </div>
         <div className='flex-middle is-centered'>
-          <span className='text-oversized'>${data.balance && data.balance.toFixed(2)}</span>
+          <span className='text-oversized'>
+            {format(data.balance || 0, { code: 'USD', precision: 0 })}
+          </span>
           { data.hasBank ?
             <Button to='' text='Claim Rewards' type='primary' onClick={this.claim} />
           :
