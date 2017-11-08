@@ -1,7 +1,5 @@
 import React from 'react'
 
-import Anchor from '../components/Anchor'
-import Button from '../components/Button'
 import Camera from '../components/Camera'
 
 export default class Signup4 extends React.Component {

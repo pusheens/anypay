@@ -4,9 +4,15 @@ import ReactDOM from 'react-dom'
 class Loader extends React.Component {
   render () {
     return (
-      <div className='loader-container'>
-        <div className="loader"></div>
-      </div>
+      <div className='phone-wrapper'>
+        <div className='phone'>
+          <div className='phone-content'>
+            <div className='loader-container'>
+              <div className="loader"></div>
+            </div>
+          </div>
+        </div>
+      </div>      
     )
   }
 }

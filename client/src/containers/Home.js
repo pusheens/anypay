@@ -1,74 +1,56 @@
 import React from 'react'
-
 import axios from 'axios'
-import firebase from 'firebase'
+import { format } from 'currency-formatter'
 
 import Button from '../components/Button'
 import Profile from '../components/Profile'
+import withUser from './withUser'
+import api from '../lib/api'
+import { openLoader } from '../components/Loader'
 
-export default class Home extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      name: null,
-      email: null,
-      photoUrl: null,
-      bankFlag: null,
-      cardNumber: null,
-      balance: null
-    }
-  }
-
-  async componentDidMount(){
-    const  update = async (user) => {
-      const { data } = await axios.get('http://204.84.8.253:3000/user_info', {
-        params: {
-          email: user.email
+class Home extends React.Component {
+  claim = async event => {
+    event.preventDefault()
+    const closeLoader = openLoader()
+    try {
+      await axios.post(`${api}/claim`, {}, {
+        headers: {
+          'token': await this.props.user.record.getIdToken(true)
         }
       })
-
-      this.setState({
-        name: user.displayName,
-        email: user.email,
-        photoUrl: user.photoURL,
-        cardNumber: data.creditCards[0]
-      })
+    } finally {
+      closeLoader()
     }
-
-    await firebase.auth().onAuthStateChanged(async user => {
-      await update(user)
-    })
-    if (firebase.auth().currentUser) {
-      update(firebase.auth().currentUser)
-    }
-      //const user2 = await axios.get(`http://204.84.8.253:3000/user_info?email=${user.email}`)
-
   }
-
   render () {
+    const { record, data } = this.props.user
     return (
       <div className='container'>
         <div className='flex-start'>
           <div className='splash'>
-            <Profile title={this.state.name} subtitle={this.state.email} img={this.state.photoUrl} />
+            <Profile title={record.displayName} subtitle={record.email} img={record.photoURL} />
           </div>
         </div>
         <div className='flex-middle is-centered'>
-          <span className='text-oversized'>${this.state.balance}.00</span>
-          { this.state.bankFlag === 'true' ?
-            <Button to='' text='Claim Rewards' type='primary' />
+          <span className='text-oversized'>
+            {format(data.balance || 0, { code: 'USD', precision: 0 })}
+          </span>
+          { data.hasBank ?
+            <Button to='' text='Claim Rewards' type='primary' onClick={this.claim} />
           :
             <Button to='/bankAccount' text='Add Bank Account' type='primary' />
           }
         </div>
         <div className='flex-end is-centered'>
-          { this.state.cardNumber ?
+          { data.creditCards ?
             <Button to='/sendmoney1' text='Send Money' type='gradient' />
           :
-            <Button to='/creditCard' text='Add Credit Card' type='gradient' />
+            <Button to='/signup4' text='Add Credit Card' type='gradient' />
           }
         </div>
       </div>
     )
   }
 }
+
+export default withUser(Home)

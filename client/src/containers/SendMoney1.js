@@ -4,18 +4,17 @@ import React from 'react'
 
 import Camera from '../components/Camera'
 import { openLoader } from '../components/Loader'
+import api from '../lib/api'
 
 class SendMoney1 extends React.Component {
   onSnap = async (snap) => {
-    // const binary = snap.replace(/^data:image\/(png|jpg);base64,/, "")
-
     const closeLoader = openLoader()
 
     const formData = new FormData()
     const blob = await fetch(snap).then(res => res.blob())
     formData.append('photo', blob)
 
-    const { data: { photoUrl, user } } = await axios.post('http://l/detect_face', formData, {
+    const { data: { photoUrl, user } } = await axios.post(`${api}/detect`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data'
       }
@@ -23,7 +22,12 @@ class SendMoney1 extends React.Component {
 
     closeLoader()
 
-    this.props.history.push(`/sendmoney2/${user}/${encodeURIComponent(photoUrl)}`)
+    if (user) {
+      this.props.history.push(`/sendmoney2/${user}/${encodeURIComponent(photoUrl)}`)
+    } else {
+      alert('No match found. Try again.')
+      window.location = window.location
+    }
   }
   render () {
     return (

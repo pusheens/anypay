@@ -1,1 +1,6 @@
 .DS_Store
+.sass-cache
+dist
+key-*.json
+node_modules
+service-account.json

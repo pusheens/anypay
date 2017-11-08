@@ -1,31 +1,30 @@
 import React from 'react'
-
+import { withRouter } from 'react-router'
 import axios from 'axios'
-import firebase from 'firebase'
 
 import Button from '../components/Button'
 import Input from '../components/Input'
+import withUser from './withUser'
+import api from '../lib/api'
+import { openLoader } from '../components/Loader'
 
-export default class AddBankAccount extends React.Component {
+class AddBankAccount extends React.Component {
   addBank = async event => {
-    event.preventDefault()
-
+    event.preventDefault();
+    const closeLoader = openLoader()
     try {
-      const email = firebase.auth().currentUser.email
-
-      const { data } = await axios.get('http://204.84.8.253:3000/has_bank', {
-        params: {
-          email,
-          hasBank: true
+      await axios.post(`${api}/bank`, {}, {
+        headers: {
+          'token': await this.props.user.record.getIdToken(true)
         }
       })
-
       this.props.history.push('/home')
     } catch (error) {
       console.log(error)
+    } finally {
+      closeLoader()
     }
   }
-
   render () {
     return (
       <div className='container'>
@@ -44,3 +43,5 @@ export default class AddBankAccount extends React.Component {
     )
   }
 }
+
+export default withUser(withRouter(AddBankAccount))
