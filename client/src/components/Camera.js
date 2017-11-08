@@ -73,11 +73,21 @@ class Camera extends React.Component {
   showVideo () {
     this.video.classList.add('visible')
     this.capture.classList.add('visible')
+    this.refs.clickToShow.style.display = 'none'
+  }
+
+  clickToShow = (e) => {
+    e.preventDefault()
+    this.video.play()
+    this.showVideo()
   }
 
   render () {
     return (
       <div className='camera'>
+        <a href='#' ref='clickToShow' onClick={this.clickToShow}>
+          Click to Show Camera
+        </a>
         <video muted id='camera-stream'></video>
         <span className='capture' onClick={this.handleTakePhoto.bind(this)}></span>
         <canvas></canvas>
