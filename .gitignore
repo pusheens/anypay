@@ -1,6 +1,6 @@
 .DS_Store
 .sass-cache
-dist
+build
 key-*.json
 node_modules
 service-account.json

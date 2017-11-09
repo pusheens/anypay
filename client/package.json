@@ -6,7 +6,6 @@
     "axios": "^0.17.0",
     "currency-formatter": "^1.3.1",
     "firebase": "^4.6.1",
-    "node-sass": "^4.6.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-router": "^4.2.0",
@@ -14,7 +13,7 @@
     "react-scripts": "1.0.17"
   },
   "scripts": {
-    "start": "concurrently 'npm run start:sass' 'npm run start:server'",    
+    "start": "concurrently 'npm run start:sass' 'npm run start:server'",
     "start:sass": "node-sass-chokidar src/sass/ -o public/css -w --source-map public/css",
     "start:server": "react-scripts start",
     "build": "concurrently 'npm run build:sass' 'npm run build:server'",
@@ -27,7 +26,6 @@
     "@types/currency-formatter": "^1.3.0",
     "concurrently": "^3.5.0",
     "firebase-tools": "^3.14.0",
-    "node-sass": "^4.6.0",
     "node-sass-chokidar": "0.0.3"
   }
 }

@@ -1,5 +1,5 @@
 {
-  "main": "dist/index.js",
+  "main": "build/index.js",
   "scripts": {
     "build": "tsc",
     "start": "nodemon --exec ts-node -- src/dev.ts",
