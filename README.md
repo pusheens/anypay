@@ -6,7 +6,7 @@ A progressive web app for sending money with the help of facial recognition. –
 
 | Elizabeth | Nick | Jeremy |
 |-----------|------|--------|
-| [![Elizabeth](https://avatars3.githubusercontent.com/u/10986971?s=150)](https://github.com/ethomp54) | [![Nick](https://avatars2.githubusercontent.com/u/3587605?s=150)](https://github.com/nickbreaton) | [![Jeremy](https://avatars3.githubusercontent.com/u/8093520?s=150)](https://github.com/jeremybohannon) |
+| [![Elizabeth](https://avatars3.githubusercontent.com/u/10986971?s=100)](https://github.com/ethomp54) | [![Nick](https://avatars2.githubusercontent.com/u/3587605?s=100)](https://github.com/nickbreaton) | [![Jeremy](https://avatars3.githubusercontent.com/u/8093520?s=100)](https://github.com/jeremybohannon) |
 
 ## Attributions
 
